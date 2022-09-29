@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import '@lottiefiles/lottie-player';
 import { create } from '@lottiefiles/lottie-interactivity';
 import { useSpring, animated, easings } from 'react-spring';
+import { Outlet, Link } from 'react-router-dom';
 import '../style/landing.css';
 import pic1 from '../fav2.jpeg'
 import pic2 from '../fav3.jpeg'
@@ -19,7 +20,7 @@ function Landing(){
         <div className='text'>
           <p>Hi, If you landed here, welcome! This is a personal project of mine, where you can run Stable Diffusion prompts on my home computer, running on an RTX 2060 Super and a very slow internet connection. Enjoy!</p>
           <div className='link'>
-            <a href='home'>START</a>
+            <Link to={'main'}>START</Link>
           </div>
         </div>
       </div>

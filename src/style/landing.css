@@ -2,8 +2,7 @@
 
 * {
   background-color: #C4C4C4; 
-  margin: 0;
-  padding: 0;
+  font-family: 'Krona One', sans-serif;
   }
 
 .landing {
@@ -12,10 +11,6 @@
   width: 100%;
   color: #101010;
   overflow: hidden;
-  /*
-  background: url(../fav2.jpeg) left bottom no-repeat, url(../fav4.jpeg) left center no-repeat, url(../fav3.jpeg) left top no-repeat;
-  background-size: 67vh;
-  */
   display: flex;
   justify-content: flex-start;
   opacity: 0.7;
@@ -62,14 +57,14 @@
   justify-content: center;
 }
 
-p {
+.text > p {
   text-align: center;
   background: transparent;
   padding: 10%;
 }
 
-.link {
-  width: 20%;
+.link > a {
+  width: 5%;
   padding-left: 5%;
   padding-right: 5%;
   padding-top: 2%;
@@ -77,6 +72,9 @@ p {
   margin-left: auto;
   margin-right: auto;
   border: solid;
+  border-radius: 5%;
+  text-decoration: none;
+  color: inherit;
   }
 
 .background {
