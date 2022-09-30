@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
 
 * {
-  background-color: #C4C4C4; 
+  background-color: #f5f5f5; 
   font-family: 'Krona One', sans-serif;
   }
 
@@ -89,3 +89,6 @@
 
 }
 
+.background > img {
+  min-height: 33vh;
+}

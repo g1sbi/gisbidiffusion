@@ -3,8 +3,10 @@ import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider, Route, Router } from 'react-router-dom';
 import './index.css';
 import App from './App';
-import Main from './routes/main';
+import Home from './routes/home';
 import ErrorPage from './routes/error-page';
+import Tips from './routes/tips';
+import Login from './routes/profile';
 import reportWebVitals from './reportWebVitals';
 
 const router = createBrowserRouter([
@@ -14,9 +16,20 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage/>
   },
   {
-    path:'main',
-    element: <Main/>
+    path:'home',
+    element: <Home/>,
+    children: [
+      {
+        path: 'tips',
+        element: <Tips/>
+      },
+   ]
+  },
+  {
+    path: 'home/profile',
+    element: <Login/>
   }
+
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

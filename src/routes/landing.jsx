@@ -20,7 +20,7 @@ function Landing(){
         <div className='text'>
           <p>Hi, If you landed here, welcome! This is a personal project of mine, where you can run Stable Diffusion prompts on my home computer, running on an RTX 2060 Super and a very slow internet connection. Enjoy!</p>
           <div className='link'>
-            <Link to={'main'}>START</Link>
+            <Link to={'home'}>START</Link>
           </div>
         </div>
       </div>

@@ -1,45 +1,74 @@
 .prompt {
+    overflow: hidden;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
-    margin-top: 5vh;
+    margin-top: 50vh;
 
 }
 
-#input {
+.input {
+    box-shadow: 2px 2px 2px #404040;
+    border-radius: 6px;
+}
+
+#text-input {
     width: 30vw;
+    height: 4vh;
+    border: solid;
+    border-width: 1px;
+    border-radius: 6px 0px 0px 6px;
+    padding-left: 10px;
+    color: #a1a1a1;
 }
 
 #button {
-    margin: 2%;
-    height: 3vh;
-    width: 5%;
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    margin-left: auto;
-    margin-right: auto;
+    position: relative;
+    height: 4vh;
     border: solid;
+    border-width: 1px;
+    border-radius: 0px 6px 6px 0px;
     text-decoration: none;
     color: inherit;
-    border-radius: 5%;
+    text-align: center;
 }
 
-.pages {
+.home-header {
     display: flex;
-    justify-content: flex-end;
+    flex-direction: row;
+    justify-content: space-between;
     width: 100%;
     height: 5vh;
+    font-size: 100%;
+    padding-top: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
 }
 
-.pages>p {
+.header-right {
+    width: 10vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+.header-left > a , .header-right > a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.tips {
+    width: 30vw;
+    text-align: center;
     margin: 2%;
 }
 
-#input {
-    background-color: white;
+.tips > a {
+    text-decoration: none;
+    color: inherit;
+    font-size: 70%; 
 }
+
+
