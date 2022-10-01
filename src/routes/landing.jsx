@@ -4,9 +4,9 @@ import { create } from '@lottiefiles/lottie-interactivity';
 import { useSpring, animated, easings } from 'react-spring';
 import { Outlet, Link } from 'react-router-dom';
 import '../style/landing.css';
-import pic1 from '../fav2.jpeg'
-import pic2 from '../fav3.jpeg'
-import pic3 from '../fav4.jpeg'
+import pic1 from '../assets/fav2.jpeg'
+import pic2 from '../assets/fav3.jpeg'
+import pic3 from '../assets/fav4.jpeg'
 
 
 function Landing(){
@@ -22,6 +22,7 @@ function Landing(){
           <div className='link'>
             <Link to={'home'}>START</Link>
           </div>
+          <p id='disclaimer'>Disclaimer: the website is still in production phase, some features may be mock ups / not working</p>
         </div>
       </div>
       <div className='landing'>

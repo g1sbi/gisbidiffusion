@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import  { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../style/login.css'
 
@@ -8,8 +9,33 @@ export default function Login(){
   const [password, setPassword] = useState('');
   const [user, setUser] = useState('');
 
-  const handleSubmit = async e => {
+  //check if user has already logged in
+  //  useEffect( () => {
+  //    const loggedInUser = localStorage.getItem('user');
+  //    if (loggedInUser) {
+  //      setUser(loggedInUser);
+  //    }
+  //  }, [] );
 
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const user = { username, password };
+    //send user and pw to the server
+    //    const response = await axios.post(
+    //      'http://blogservice.herokuapp.com/api/login',
+    //      user
+    //    );
+    //    setUser(response.data)
+    //    //store user in local storage
+    //    localStorage.setItem('user', response.data)
+    //    console.log(response.data)
+  };
+
+  const handleLogout = () => {
+    setUser({});
+    setUsername('');
+    setPassword('');
+    localStorage.clear();
   };
 
   //logged user
@@ -17,13 +43,16 @@ export default function Login(){
   if (user) {
     return(
       <>
-        <h1>Welcome back {user.name}!</h1>
+        <h1>Welcome back {user.username}!</h1>
+        <Link route={'/'}>
+          <button onClick={handleLogout}>logout</button>
+        </Link>
       </>
     )
   }
 
   //new user / logged out
-  
+
   return(
 
     <>
@@ -32,18 +61,18 @@ export default function Login(){
           <h1>Login</h1>
           <form onSubmit={handleSubmit}>
             <div className='login-username'>
-              <label htmlFor='username'>Username: </label>
               <input
                 type='text'
                 value={username}
+                placeholder='Username'
                 onChange={({target}) => setUsername(target.value) }
               />
             </div>
             <div className='login-password'>
-              <label htmlFor='password'>Password: </label>
               <input
                 type='password'
                 value={password}
+                placeholder='Password'
                 onChange={({target}) => setPassword(target.value)}
               />
             </div>
@@ -52,5 +81,5 @@ export default function Login(){
         </div>
       </div>
     </>
-)
+  )
 }

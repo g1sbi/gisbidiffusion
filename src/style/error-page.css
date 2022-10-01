@@ -4,5 +4,15 @@
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    text-align: center;
 }
+
+.error-page > h1 {
+    padding: 2vh;
+}
+
+.error-page > p {
+    padding: 2vh;
+}
+
