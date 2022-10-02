@@ -6,13 +6,17 @@ import '../style/home.css'
 export default function Home() {
 
     const [tips, setTips] = useState(false);
+    console.log(tips);
+    const handleClick = () => {
+        tips ? setTips(false) : setTips(true);
+    }
     return (
         <>
-            <div class='home-header'>
-                <div class='header-left'>
+            <div className='home-header'>
+                <div className='header-left'>
                     <Link to={'/'}>Home</Link>
                 </div>
-                <div class='header-right'>
+                <div className='header-right'>
                     <Link to={'profile'}>Profile</Link>
                     <Link to={'about'}>About</Link>
                 </div>
@@ -23,11 +27,18 @@ export default function Home() {
                     <button type='submit' id='button'>COMPUTE</button>
                 </div>
                 <div className='tips'>
-                    <Link to={'tips'}>Click for prompt tips! </Link>
+                    {tips ?
+                        <button onClick={handleClick}>
+                            <div className='tips-box'>
+                                <p>Add details like "highly detailed, 4K, trending on artstation, cinematic lighting, masterpiece, etc.."</p>
+                                <p>It's especially helpful to pick an artist to direct the style of the image. Try "art by Greg Rutkowski", or any other artist you have in mind!</p>
+                            </div>
+                        </button>
+                        :
+                        <button onClick={handleClick}>Click for prompt tips! </button>}
                 </div>
             </div>
         </>
     )
 }
-
 
