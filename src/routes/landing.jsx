@@ -25,7 +25,7 @@ function Landing(){
             <div className='link'>
               <Link to={'home'} onClick={handleClick} >START</Link>
             </div>
-            <p id='disclaimer'>Disclaimer: the website is still in production phase, some features may be mock ups / not working</p>
+            <p id='disclaimer'>Disclaimer: the website is still in development, some features may be mock ups / not working</p>
           </div>
         </div>
         <div className='landing'>
