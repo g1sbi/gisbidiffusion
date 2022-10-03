@@ -15,7 +15,9 @@
     border: solid;
     border-radius: 10px;
     border-width: 1px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 2px 2px 2px #404040;
 }
 
 .login-box > h1{
@@ -26,42 +28,35 @@
 .login-box > form {
     height: 30vh;
 }
-.login-username {
-    padding: 3%;
-    padding-top: 5%;
-    padding-bottom: 5%;
+.login-username, .login-password {
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-bottom: 2vh;
 }
 
-.login-username > input {
+.login-username > input , .login-password > input {
+    border: solid;
+    border-width: 1px;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
     border-radius: 6px;
-
+    padding: 10px;
+    box-shadow: 2px 2px 2px #404040;
 }
-
-
-.login-password {
-    padding: 3%;
-    padding-top: 5%;
-    padding-bottom: 5%;
-}
-
-.login-password> input {
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
-    border-radius: 6px;
-}
-
 
 
 .login-box > form > button {
     max-width: 10vw;
     margin-left: auto;
     margin-right: auto;
+    padding: 10px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 6px;
+    box-shadow: 2px 2px 2px #404040;
+    
 }
-
 
 .login-box > form {
     width: 19vw;
@@ -71,3 +66,28 @@
     justify-content: center;
 }
 
+
+/* REGISTER/LOGIN */
+
+.register-login {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.register-login > p {
+    margin-right: 10px;
+    margin-top: 1px;
+}
+.register-login > a{
+    border: none;
+    padding: 1px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #a500c2;
+}
+
+.register-login > a:hover {
+    background-color: #a500c2;
+    color: #101010;
+}

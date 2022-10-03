@@ -60,24 +60,28 @@ export default function Login(){
         <div className='login-box'>
           <h1>Login</h1>
           <form onSubmit={handleSubmit}>
-            <div className='login-username'>
-              <input
-                type='text'
-                value={username}
-                placeholder='Username'
-                onChange={({target}) => setUsername(target.value) }
-              />
-            </div>
-            <div className='login-password'>
-              <input
-                type='password'
-                value={password}
-                placeholder='Password'
-                onChange={({target}) => setPassword(target.value)}
-              />
-            </div>
+              <div className='login-username'>
+                <input
+                  type='text'
+                  value={username}
+                  placeholder='Username'
+                  onChange={({target}) => setUsername(target.value) }
+                />
+              </div>
+              <div className='login-password'>
+                <input
+                  type='password'
+                  value={password}
+                  placeholder='Password'
+                  onChange={({target}) => setPassword(target.value)}
+                />
+              </div>
             <button type='submit'>Login</button>
           </form>
+        </div>
+        <div className='register-login'>
+          <p>Don't have an account? </p>
+          <a>Register here!</a>
         </div>
       </div>
     </>
