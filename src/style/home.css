@@ -14,6 +14,9 @@
     font-size: 120%;
 }
 
+.header-left , .header-right {
+    height: 5vh;
+}
 
 .header-left > a , .header-right > a{
     text-decoration: none;

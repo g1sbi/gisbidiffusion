@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { animated as a, useTransition} from 'react-spring';
+import { useSpring, animated as a, useTransition, config } from 'react-spring';
 import '../style/home.css'
 import pic1 from '../assets/pic1.jpeg'
 import pic2 from '../assets/pic2.jpeg'
@@ -20,36 +20,56 @@ export default function Home() {
 
     const handlePrompt = () => {
         setResults(true);
-        console.log(results);
     }
+
+    
+    const compute = useCallback( (a,b,c,d,e) => {
+    return {
+    from: {
+      opacity: 0,
+      transform: 'translateY(100%)'
+    },
+    to: {
+      opacity: 1,
+      transform: 'translateY(0)'
+    },
+    config: config.molasses,
+    delay: a * 200 + b * 400 + c * 600 + d * 800 + e * 1000
+  }});
+
+  const style1 = useSpring(compute(1,0,0,0,0))
+  const style2 = useSpring(compute(0,1,0,0,0))
+  const style3 = useSpring(compute(0,0,1,0,0))
+  const style4 = useSpring(compute(0,0,0,1,0))
+  const style5 = useSpring(compute(0,0,0,0,1))
 
     return (
         <>
             <div className='home-header'>
-                <div className='header-left'>
+                <a.div className='header-left' style={style1}>
                     <Link to={'/'}>Home</Link>
-                </div>
-                <div className='header-right'>
-                    <Link to={'profile'}>Profile</Link>
+                </a.div>
+                <a.div className='header-right' style={style2}>
+                    <Link to={'login'}>Profile</Link>
                     <Link to={'about'}>About</Link>
-                </div>
+                </a.div>
             </div>
             <div className='prompt'>
-                <div className='input'>
+                <a.div className='input' style={style3}>
                     <input type='text' id='text-input' placeholder='A cyberpunk city, with neon lights, photorealistic, digital art'></input>
                     <button type='submit' id='button' onClick={handlePrompt}>COMPUTE</button>
-                </div>
-                <div className='tips'>
+                </a.div>
+                <a.div className='tips' style={style4}>
                     {tips ?
                         <button onClick={handleTips}>
-                            <div className='tips-box'>
+                            <a.div className='tips-box' style={style1}>
                                 <p>Add details like "highly detailed, 4K, trending on artstation, cinematic lighting, masterpiece, etc.."</p>
                                 <p>It's especially helpful to pick an artist to direct the style of the image. Try "art by Greg Rutkowski", or any other artist you have in mind!</p>
-                            </div>
+                            </a.div>
                         </button>
                         :
                         <button onClick={handleTips}>Click for prompt tips! </button>}
-                </div>
+                </a.div>
                 {results && <Results/>}
             </div>
         </>
@@ -66,7 +86,7 @@ function Results() {
         from: { 
             opacity: 0,
             transform: 'translateY(100%) scale(120%)',
-            
+
         },
         enter: { 
             opacity: 1,
@@ -76,7 +96,7 @@ function Results() {
             opacity: 0,
             transform: 'translateY(100%) scale(0)'
         },
-        trail: 100
+        trail: 200,
     })
 
 
@@ -84,8 +104,8 @@ function Results() {
         <div className='results'>
             { transitions((style, item) => (
                 <a.div style={style}>
-                    <img src={item}/>
+                    <img src={item} alt='prompt-result'/>
                 </a.div>
-    ))}
+            ))}
         </div>
     )}
