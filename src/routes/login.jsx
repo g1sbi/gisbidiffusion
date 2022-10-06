@@ -1,36 +1,14 @@
 import  { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useSpring, animated as a, config } from 'react-spring';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 import '../style/login.css';
 
-export default function Login(){
+export default function Login({setToken}){
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [user, setUser] = useState('');
-
-  //check if user has already logged in
-  //  useEffect( () => {
-  //    const loggedInUser = localStorage.getItem('user');
-  //    if (loggedInUser) {
-  //      setUser(loggedInUser);
-  //    }
-  //  }, [] );
-
-  const handleSubmit = async e => {
-    e.preventDefault();
-    const user = { username, password };
-    //send user and pw to the server
-    //    const response = await axios.post(
-    //      'http://blogservice.herokuapp.com/api/login',
-    //      user
-    //    );
-    //    setUser(response.data)
-    //    //store user in local storage
-    //    localStorage.setItem('user', response.data)
-    //    console.log(response.data)
-  };
 
   const handleLogout = () => {
     setUser({});
@@ -62,24 +40,27 @@ export default function Login(){
   const style6 = useSpring(compute(0,0,0,0,0,1))
 
 
-
-  //logged user
-
-  if (user) {
-    return(
-      <>
-        <h1>Welcome back {user.username}!</h1>
-        <Link route={'/'}>
-          <button onClick={handleLogout}>logout</button>
-        </Link>
-      </>
-    )
+  async function loginUser(credentials) {
+    return fetch('http://localhost:5000/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(credentials)
+    })
+      .then(data => data.json())
   }
 
-  //new user / logged out
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const token = await loginUser({
+      username,
+      password
+    });
+    setToken(token);
+  }
+
   return(
-
-
     <>
       <div className='login-page'>
         <a.div className='login-box' style={style1}>
@@ -90,7 +71,7 @@ export default function Login(){
                   type='text'
                   value={username}
                   placeholder='Username'
-                  onChange={({target}) => setUsername(target.value) }
+                  onChange={e => setUsername(e.target.value) }
                 />
               </a.div>
               <a.div className='login-password' style={style4}>
@@ -98,7 +79,7 @@ export default function Login(){
                   type='password'
                   value={password}
                   placeholder='Password'
-                  onChange={({target}) => setPassword(target.value)}
+                  onChange={e => setPassword(e.target.value)}
                 />
               </a.div>
             <a.button type='submit' style={style5}>Login</a.button>
@@ -111,4 +92,8 @@ export default function Login(){
       </div>
     </>
   )
+}
+
+Login.propTypes = {
+  setToken: PropTypes.func.isRequired
 }
