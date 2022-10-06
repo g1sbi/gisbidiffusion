@@ -6,7 +6,7 @@ import Landing from './routes/landing.jsx';
 import Home from './routes/home';
 import ErrorPage from './routes/error-page';
 import Tips from './routes/tips';
-import Login from './routes/login';
+import Profile from './routes/profile';
 import About from './routes/about';
 import reportWebVitals from './reportWebVitals';
 
@@ -27,8 +27,8 @@ const router = createBrowserRouter([
    ]
   },
   {
-    path: 'home/login',
-    element: <Login/>
+    path: 'home/profile',
+    element: <Profile/>
   },
   {
     path: 'home/about',

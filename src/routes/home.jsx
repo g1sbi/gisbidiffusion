@@ -50,7 +50,7 @@ export default function Home() {
                     <Link to={'/'}>Home</Link>
                 </a.div>
                 <a.div className='header-right' style={style2}>
-                    <Link to={'login'}>Profile</Link>
+                    <Link to={'profile'}>Profile</Link>
                     <Link to={'about'}>About</Link>
                 </a.div>
             </div>

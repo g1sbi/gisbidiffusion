@@ -1,7 +1,8 @@
-import  { useState, useEffect } from 'react';
+import  { useState, useEffect, useCallback } from 'react';
 import { Link } from 'react-router-dom';
+import { useSpring, animated as a, config } from 'react-spring';
 import axios from 'axios';
-import '../style/login.css'
+import '../style/login.css';
 
 export default function Login(){
 
@@ -38,6 +39,30 @@ export default function Login(){
     localStorage.clear();
   };
 
+
+ const compute = useCallback( (a,b,c,d,e,f) => {
+    return {
+    from: {
+      opacity: 0,
+      transform: 'translateY(100%)'
+    },
+    to: {
+      opacity: 1,
+      transform: 'translateY(0)'
+    },
+    config: config.molasses,
+    delay: a * 200 + b * 400 + c * 600 + d * 800 + e * 1000 + f * 1200
+  }});
+
+  const style1 = useSpring(compute(1,0,0,0,0,0))
+  const style2 = useSpring(compute(0,1,0,0,0,0))
+  const style3 = useSpring(compute(0,0,1,0,0,0))
+  const style4 = useSpring(compute(0,0,0,1,0,0))
+  const style5 = useSpring(compute(0,0,0,0,1,0))
+  const style6 = useSpring(compute(0,0,0,0,0,1))
+
+
+
   //logged user
 
   if (user) {
@@ -52,37 +77,37 @@ export default function Login(){
   }
 
   //new user / logged out
-
   return(
+
 
     <>
       <div className='login-page'>
-        <div className='login-box'>
-          <h1>Login</h1>
+        <a.div className='login-box' style={style1}>
+          <a.h1 style={style2}>Login</a.h1>
           <form onSubmit={handleSubmit}>
-              <div className='login-username'>
+              <a.div className='login-username' style={style3}>
                 <input
                   type='text'
                   value={username}
                   placeholder='Username'
                   onChange={({target}) => setUsername(target.value) }
                 />
-              </div>
-              <div className='login-password'>
+              </a.div>
+              <a.div className='login-password' style={style4}>
                 <input
                   type='password'
                   value={password}
                   placeholder='Password'
                   onChange={({target}) => setPassword(target.value)}
                 />
-              </div>
-            <button type='submit'>Login</button>
+              </a.div>
+            <a.button type='submit' style={style5}>Login</a.button>
           </form>
-        </div>
-        <div className='register-login'>
+        </a.div>
+        <a.div className='register-login' style={style6}>
           <p>Don't have an account? </p>
           <a>Register here!</a>
-        </div>
+        </a.div>
       </div>
     </>
   )
