@@ -37,10 +37,12 @@ export default function Profile(){
   const style4 = useSpring(compute(0,0,0,1,0))
   const style5 = useSpring(compute(0,0,0,0,1))
 
+/*
   if (!token){
     return <Login setToken={setToken}/>
       console.log(token)
   }
+*/
 
   return(
     <>
