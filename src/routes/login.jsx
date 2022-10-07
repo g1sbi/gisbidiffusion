@@ -28,7 +28,7 @@ export default function Login({setToken}){
       opacity: 1,
       transform: 'translateY(0)'
     },
-    config: config.molasses,
+    config: config.wobbly,
     delay: a * 200 + b * 400 + c * 600 + d * 800 + e * 1000 + f * 1200
   }});
 

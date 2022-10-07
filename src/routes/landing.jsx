@@ -37,14 +37,14 @@ function Landing(){
         <div className='content'>
           <a.div style={style4} className='header'>
             <h1>Gisbi Diffusion</h1>
-            <h2>Self hosted Stable Diffusion project</h2>
+            <h2>A Self hosted Stable Diffusion project</h2>
           </a.div>
           <a.div style={style5} className='text'>
             <p>Hi, If you landed here, welcome! This is a personal project of mine, where you can run Stable Diffusion prompts on my home computer, running on an RTX 2060 Super and a very slow internet connection. Enjoy!</p>
             <div className='link'>
               <Link to={'home'} onClick={handleClick} >START</Link>
             </div>
-            <p id='disclaimer'>Disclaimer: the website is still in development, some features may be mock ups / not working</p>
+            <p id='disclaimer'>Disclaimer: the website is still in development, some features may be mock ups / not working. Check the changelog in the home page for updates.</p>
           </a.div>
         </div>
         <div className='landing'>

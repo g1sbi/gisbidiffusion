@@ -2,6 +2,7 @@ import { useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { useSpring, animated as a, useTransition, config } from 'react-spring';
 import '../style/home.css'
+import back_arrow from '../assets/back-arrow.png'
 import pic1 from '../assets/pic1.jpeg'
 import pic2 from '../assets/pic2.jpeg'
 import pic3 from '../assets/pic3.jpeg'
@@ -33,7 +34,7 @@ export default function Home() {
       opacity: 1,
       transform: 'translateY(0)'
     },
-    config: config.molasses,
+    config: config.slow,
     delay: a * 200 + b * 400 + c * 600 + d * 800 + e * 1000
   }});
 
@@ -47,7 +48,9 @@ export default function Home() {
         <>
             <div className='home-header'>
                 <a.div className='header-left' style={style1}>
-                    <Link to={'/'}>Home</Link>
+                    <Link to={'/'}>
+                        <img src={back_arrow} alt='back arrow'/>
+                    </Link>
                 </a.div>
                 <a.div className='header-right' style={style2}>
                     <Link to={'profile'}>Profile</Link>
@@ -68,7 +71,7 @@ export default function Home() {
                             </a.div>
                         </button>
                         :
-                        <button onClick={handleTips}>Click for prompt tips! </button>}
+                        <button onClick={handleTips} style={style1}>Click for prompt tips! </button>}
                 </a.div>
                 {results && <Results/>}
             </div>
@@ -85,18 +88,19 @@ function Results() {
     const transitions = useTransition(pics, {
         from: { 
             opacity: 0,
-            transform: 'translateY(100%) scale(120%)',
+            transform: 'translateY(100%)',
 
         },
         enter: { 
             opacity: 1,
-            transform: 'translateY(0) scale(100%)'
+            transform: 'translateY(0)'
         },
         leave: {
             opacity: 0,
-            transform: 'translateY(100%) scale(0)'
+            transform: 'translateY(100%)'
         },
         trail: 200,
+        config: config.wobbly
     })
 
 
