@@ -1,0 +1,94 @@
+.login-page{
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.login-box {
+    width: 20vw;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 2px 2px 2px #404040;
+}
+
+.login-box > h1{
+    text-align: center;
+    height: 5vh;
+    margin-bottom: 2vh;
+}
+
+.login-box > form {
+    height: 30vh;
+}
+
+.login-username, .login-password {
+    padding-left: 1vw;
+    padding-right: 1vw;
+}
+
+.login-username > input , .login-password > input {
+    border: solid;
+    border-width: 1px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 2vh;
+    width: 100%;
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 2px 2px 2px #404040;
+}
+
+
+.login-box > button {
+    max-width: 10vw;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: solid;
+    border-width: 1px;
+    border-radius: 6px;
+    box-shadow: 2px 2px 2px #404040;
+    
+}
+
+.login-box > p {
+    color: red;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 2vh;
+}
+
+/* REGISTER/LOGIN */
+
+.register-login {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+.register-login > p {
+    margin-right: 10px;
+    margin-top: 1px;
+}
+.register-login > a{
+    border: none;
+    padding: 1px;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #a500c2;
+}
+
+.register-login > a:hover {
+    background-color: #a500c2;
+    color: #101010;
+}
