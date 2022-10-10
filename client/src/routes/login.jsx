@@ -1,5 +1,4 @@
-import  { useState, useEffect, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import  { useState, useCallback } from 'react';
 import { useSpring, animated as a, config } from 'react-spring';
 import axios from 'axios';
 import '../style/login.css';
@@ -126,12 +125,12 @@ export default function Login(){
           {registered ? 
             <>
               <p>Don't have an account? </p>
-              <button onClick={() => setRegister(!registered)}>Register here!</button>
+              <button onClick={() => setRegister(!registered)}>Register here</button>
             </>
             :
             <>
               <p>Already have an account? </p>
-              <button onClick={() => setRegister(!registered)}>Register here!</button>
+              <button onClick={() => setRegister(!registered)}>Log in</button>
             </>
           }
         </a.div>
