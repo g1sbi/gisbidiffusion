@@ -50,6 +50,7 @@ export default function Login(){
       setWarning(true);
     }
   } 
+
   const login = () => {
     axios({
       method: 'POST',
@@ -61,19 +62,6 @@ export default function Login(){
       url: 'http://localhost:4000/login'
     })
       .then((res) => setData(res.data))
-
-  } 
-  const getUser = () => {
-    axios({
-      method: 'GET',
-      data: {
-        username: username,
-        password: password
-      },
-      withCredentials: true,
-      url: 'http://localhost:4000/user'
-    })
-      .then((res) => console.log(res))
 
   } 
 
