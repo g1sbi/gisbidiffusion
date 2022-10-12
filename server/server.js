@@ -27,7 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.use(cors({
-	origin: 'http://localhost:3000', // location of the react app
+	origin: 'https://diffusion.gisbi.duckdns.org', // location of the react app
 	credentials: true
 }))
 
@@ -64,7 +64,7 @@ app.post('/register', (req,res) => {
 			await newUser.save();
 			res.send('User created');
 		}
-	})
+	});
 	nodemailer.sendConfirmationEmail(
 		user.username,
 		user.email,
