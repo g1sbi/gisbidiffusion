@@ -22,7 +22,7 @@ module.exports.sendConfirmationEmail = (name, email, confirmationCode) => {
 		<div>
 			<h2>Hey, ${name}!</h2>
 			<p>Thank you for registering to Gisbi Diffusion. Please, confirm your email address by clicking on the following link.</p>
-			<a href='http://localhost:3000/verify/${confirmationCode}'>Click here!</a>
+			<a href='http://diffusionback.gisbi.duckdns.org/verify/${confirmationCode}'>Click here!</a>
 		</div>
 		'
 	})
