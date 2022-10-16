@@ -17,36 +17,28 @@ export default function Profile(){
 
   const {token, setToken} = useToken();
 
- const compute = useCallback( (a,b,c,d,e) => {
-    return {
-    from: {
-      opacity: 0,
-      transform: 'translateY(100%)'
-    },
-    to: {
-      opacity: 1,
-      transform: 'translateY(0)'
-    },
-    config: config.slow,
-    delay: a * 200 + b * 400 + c * 600 + d * 800 + e * 1000
-  }});
+  const compute = (i) => {
+    return{
+      from: {
+        opacity: 0,
+        transform: 'translateY(100%)'
+      },
+      to: {
+        opacity: 1,
+        transform: 'translateY(0)'
+      },
+      config: config.wobbly,
+      delay: i * 200
+    }}
 
-  const style1 = useSpring(compute(1,0,0,0,0))
-  const style2 = useSpring(compute(0,1,0,0,0))
-  const style3 = useSpring(compute(0,0,1,0,0))
-  const style4 = useSpring(compute(0,0,0,1,0))
-  const style5 = useSpring(compute(0,0,0,0,1))
-
-/*
   if (!token){
     return <Login setToken={setToken}/>
       console.log(token)
   }
-*/
 
   return(
     <>
-      <a.div className='navigation' style={style1}>
+      <a.div className='navigation' style={useSpring(compute(1))}>
         <Link to={'/home'}>
           <img src={back_arrow} alt='back arrow'/>
         </Link>
@@ -54,23 +46,23 @@ export default function Profile(){
       </a.div>
       <div className='profile-wrapper'>
         <div className='info'>
-          <a.div className='user' style={style2}>
+          <a.div className='user' style={useSpring(compute(2))}>
             <img src={pfp} alt='profile'/>
             <div className='user-wrapper'>
               <h1>Gisbi</h1>
               <h3>Joined 7 Oct 2022</h3>
             </div>
           </a.div>
-          <a.div className='prompts-stats' style={style3}>
+          <a.div className='prompts-stats' style={useSpring(compute(3))}>
             <h3>prompts made</h3>
             <h1>26</h1>
           </a.div>
-          <a.div className='prompts-stats' style={style4}>
+          <a.div className='prompts-stats' style={useSpring(compute(4))}>
             <h3>time spent creating</h3>
             <h1>02 hours, 15 seconds</h1>
           </a.div>
         </div>
-        <a.div className='library' style={style5}>
+        <a.div className='library' style={useSpring(compute(5))}>
           <h1>Your library</h1>
           <Results/>
         </a.div>
@@ -80,36 +72,36 @@ export default function Profile(){
 }
 
 function Results() {
-    //mock up, actual functionality in production
+  //mock up, actual functionality in production
 
-    const pics = [pic1, pic2, pic3, pic4, pic5, pic6]
+  const pics = [pic1, pic2, pic3, pic4, pic5, pic6]
 
-    const transitions = useTransition(pics, {
-        from: {
-            opacity: 0,
-            transform: 'translateY(100%)',
+  const transitions = useTransition(pics, {
+    from: {
+      opacity: 0,
+      transform: 'translateY(100%)',
 
-        },
-        enter: {
-            opacity: 1,
-            transform: 'translateY(0)'
-        },
-        leave: {
-            opacity: 0,
-            transform: 'translateY(100%)'
-        },
-        delay: 1300,
-        trail: 200,
-        config: config.wobbly
-    })
+    },
+    enter: {
+      opacity: 1,
+      transform: 'translateY(0)'
+    },
+    leave: {
+      opacity: 0,
+      transform: 'translateY(100%)'
+    },
+    delay: 1300,
+    trail: 200,
+    config: config.wobbly
+  })
 
 
-    return (
-        <div className='library-pictures'>
-            { transitions((style, item) => (
-                <a.div style={style}>
-                    <img src={item} alt='prompt-result'/>
-                </a.div>
-            ))}
-        </div>
-    )}
+  return (
+    <div className='library-pictures'>
+      { transitions((style, item) => (
+        <a.div style={style}>
+          <img src={item} alt='prompt-result'/>
+        </a.div>
+      ))}
+    </div>
+  )}

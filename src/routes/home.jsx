@@ -23,55 +23,48 @@ export default function Home() {
         setResults(true);
     }
 
-    
-    const compute = useCallback( (a,b,c,d,e) => {
-    return {
-    from: {
-      opacity: 0,
-      transform: 'translateY(100%)'
-    },
-    to: {
-      opacity: 1,
-      transform: 'translateY(0)'
-    },
-    config: config.slow,
-    delay: a * 200 + b * 400 + c * 600 + d * 800 + e * 1000
-  }});
-
-  const style1 = useSpring(compute(1,0,0,0,0))
-  const style2 = useSpring(compute(0,1,0,0,0))
-  const style3 = useSpring(compute(0,0,1,0,0))
-  const style4 = useSpring(compute(0,0,0,1,0))
-  const style5 = useSpring(compute(0,0,0,0,1))
+    const compute = (i) => {
+        return{
+            from: {
+                opacity: 0,
+                transform: 'translateY(100%)'
+            },
+            to: {
+                opacity: 1,
+                transform: 'translateY(0)'
+            },
+            config: config.wobbly,
+            delay: i * 200
+        }}
 
     return (
         <>
             <div className='home-header'>
-                <a.div className='header-left' style={style1}>
+                <a.div className='header-left' style={useSpring(compute(1))}>
                     <Link to={'/'}>
                         <img src={back_arrow} alt='back arrow'/>
                     </Link>
                 </a.div>
-                <a.div className='header-right' style={style2}>
+                <a.div className='header-right' style={useSpring(compute(2))}>
                     <Link to={'profile'}>Profile</Link>
                     <Link to={'about'}>About</Link>
                 </a.div>
             </div>
             <div className='prompt'>
-                <a.div className='input' style={style3}>
+                <a.div className='input' style={useSpring(compute(3))}>
                     <input type='text' id='text-input' placeholder='A cyberpunk city, with neon lights, photorealistic, digital art'></input>
                     <button type='submit' id='button' onClick={handlePrompt}>COMPUTE</button>
                 </a.div>
-                <a.div className='tips' style={style4}>
+                <a.div className='tips' style={useSpring(compute(4))}>
                     {tips ?
                         <button onClick={handleTips}>
-                            <a.div className='tips-box' style={style1}>
+                            <a.div className='tips-box'>
                                 <p>Add details like "highly detailed, 4K, trending on artstation, cinematic lighting, masterpiece, etc.."</p>
                                 <p>It's especially helpful to pick an artist to direct the style of the image. Try "art by Greg Rutkowski", or any other artist you have in mind!</p>
                             </a.div>
                         </button>
                         :
-                        <button onClick={handleTips} style={style1}>Click for prompt tips! </button>}
+                        <button onClick={handleTips}>Click for prompt tips! </button>}
                 </a.div>
                 {results && <Results/>}
             </div>

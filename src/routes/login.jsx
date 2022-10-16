@@ -17,30 +17,22 @@ export default function Login({setToken}){
     localStorage.clear();
   };
 
-
- const compute = useCallback( (a,b,c,d,e,f) => {
-    return {
-    from: {
-      opacity: 0,
-      transform: 'translateY(100%)'
-    },
-    to: {
-      opacity: 1,
-      transform: 'translateY(0)'
-    },
-    config: config.wobbly,
-    delay: a * 200 + b * 400 + c * 600 + d * 800 + e * 1000 + f * 1200
-  }});
-
-  const style1 = useSpring(compute(1,0,0,0,0,0))
-  const style2 = useSpring(compute(0,1,0,0,0,0))
-  const style3 = useSpring(compute(0,0,1,0,0,0))
-  const style4 = useSpring(compute(0,0,0,1,0,0))
-  const style5 = useSpring(compute(0,0,0,0,1,0))
-  const style6 = useSpring(compute(0,0,0,0,0,1))
+  const compute = (i) => {
+       return{
+        from: {
+          opacity: 0,
+          transform: 'translateY(100%)'
+        },
+        to: {
+          opacity: 1,
+          transform: 'translateY(0)'
+        },
+        config: config.wobbly,
+        delay: i * 200
+      }}
 
 
-  async function loginUser(credentials) {
+    async function loginUser(credentials) {
     return fetch('http://localhost:5000/login', {
       method: 'POST',
       headers: {
@@ -57,35 +49,34 @@ export default function Login({setToken}){
       username,
       password
     });
-    setToken(token);
   }
 
   return(
     <>
       <div className='login-page'>
-        <a.div className='login-box' style={style1}>
-          <a.h1 style={style2}>Login</a.h1>
+        <a.div className='login-box' style={useSpring(compute(1))}>
+          <a.h1 style={useSpring(compute(2))}>Login</a.h1>
           <form onSubmit={handleSubmit}>
-              <a.div className='login-username' style={style3}>
-                <input
-                  type='text'
-                  value={username}
-                  placeholder='Username'
-                  onChange={e => setUsername(e.target.value) }
-                />
-              </a.div>
-              <a.div className='login-password' style={style4}>
-                <input
-                  type='password'
-                  value={password}
-                  placeholder='Password'
-                  onChange={e => setPassword(e.target.value)}
-                />
-              </a.div>
-            <a.button type='submit' style={style5}>Login</a.button>
+            <a.div className='login-username' style={useSpring(compute(3))}>
+              <input
+                type='text'
+                value={username}
+                placeholder='Username'
+                onChange={e => setUsername(e.target.value) }
+              />
+            </a.div>
+            <a.div className='login-password' style={useSpring(compute(4))}>
+              <input
+                type='password'
+                value={password}
+                placeholder='Password'
+                onChange={e => setPassword(e.target.value)}
+              />
+            </a.div>
+            <a.button type='submit' style={useSpring(compute(5))}>Login</a.button>
           </form>
         </a.div>
-        <a.div className='register-login' style={style6}>
+        <a.div className='register-login' style={useSpring(compute(6))}>
           <p>Don't have an account? </p>
           <a>Register here!</a>
         </a.div>
@@ -94,6 +85,4 @@ export default function Login({setToken}){
   )
 }
 
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired
-}
+
