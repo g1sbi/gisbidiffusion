@@ -9,11 +9,15 @@ const session = require('express-session');
 const { v4: uuidv4 } = require('uuid');
 
 const User = require('./config/user');
-const Mail = require('./config/nodemailer')
+const Mail = require('./config/nodemailer');
+const { checkDuplicate } = require('./config/verifyRegistration');
 
 const app = express();
 
+//URLs
+const frontUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://diffusion.gisbi.duckdns.org';
 
+console.log(process.env.NODE_ENV)
 //connect database
 mongoose.connect('mongodb://192.168.3.10:8000/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.0'),{
 	useNewUrlParser: true,
@@ -27,9 +31,11 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
 app.use(cors({
-	origin: 'https://diffusion.gisbi.duckdns.org', // location of the react app
+	origin: frontUrl, // location of the react app
 	credentials: true
 }))
+
+console.log(frontUrl)
 
 app.use(session({
 	secret: 'secretcode',
@@ -45,13 +51,17 @@ require('./config/passportConfig')(passport);
 
 //confirmation code computation
 const token = uuidv4();
-console.log(token)
 
 //routes
 app.post('/register', (req,res) => {
 	User.findOne({username: req.body.username}, async(err,doc) => {
 		if (err) throw err;
-		if (doc) res.send('User Already Exists');
+		if (doc) res.send('User already exists');
+	})
+
+	User.findOne({email: req.body.email}, async(err,doc) => {
+		if (err) throw err;
+		if (doc) res.send('Email already in use');
 		if (!doc) {
 
 			const hashedPassword = await bcrypt.hash(req.body.password,8);
@@ -65,7 +75,7 @@ app.post('/register', (req,res) => {
 			res.send('User created');
 		}
 	});
-	nodemailer.sendConfirmationEmail(
+	Mail.nodemailer.sendConfirmationEmail(
 		user.username,
 		user.email,
 		user.confirmationCode
@@ -89,6 +99,7 @@ app.post('/login', (req,res, next) => {
 		}
 	})(req,res,next);
 });
+
 
 app.listen(4000, () => {
 	console.log('Server has started');

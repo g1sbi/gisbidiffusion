@@ -5,14 +5,18 @@ import '../style/login.css';
 
 export default function Login(){
 
+  const backUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:4000' : 'https://api.diffusion.gisbi.duckdns.org'
+
   const [registered, setRegister] = useState(false);
   const [warning, setWarning] = useState(false);
   const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirm_password, setConfirmPassword] = useState('');
   const [data, setData] = useState('');
+  const [postregister, setPostregister] = useState(false);
 
-  const compute = useCallback( (a,b,c,d,e,f) => {
+  const compute = (x) => {
     return {
       from: {
         opacity: 0,
@@ -23,32 +27,38 @@ export default function Login(){
         transform: 'translateY(0)'
       },
       config: config.wobbly,
-      delay: a * 200 + b * 400 + c * 600 + d * 800 + e * 1000 + f * 1200,
-    }});
+      delay: x,
+    }};
+  
+  const style = [];
+  
+  style.forEach
 
-  const style1 = useSpring(compute(1,0,0,0,0,0))
-  const style2 = useSpring(compute(0,1,0,0,0,0))
-  const style3 = useSpring(compute(0,0,1,0,0,0))
-  const style4 = useSpring(compute(0,0,0,1,0,0))
-  const style5 = useSpring(compute(0,0,0,0,1,0))
-  const style6 = useSpring(compute(0,0,0,0,0,1))
-
+  const style1 = useSpring(x)
+  const style2 = useSpring(x)
+  const style3 = useSpring(x)
+  const style4 = useSpring(x)
+  const style5 = useSpring(x)
+  const style6 = useSpring(x)
 
   const register = () => {
+    console.log(password,confirm_password)
     if(password===confirm_password){
     axios({
       method: 'POST',
       data: {
+        email: email,
         username: username,
         password: password
       },
       withCredentials: true,
-      url: 'http://localhost:4000/register'
+      url: backUrl + '/register'
     })
       .then((res) => console.log(res))
     }else{
       setWarning(true);
     }
+    setPostregister(true);
   } 
 
   const login = () => {
@@ -59,7 +69,7 @@ export default function Login(){
         password: password
       },
       withCredentials: true,
-      url: 'http://localhost:4000/login'
+      url: backUrl + '/login'
     })
       .then((res) => setData(res.data))
 
@@ -67,6 +77,7 @@ export default function Login(){
 
   return(
     <>
+      {!postregister && 
       <div className='login-page'>
         <a.div className='login-box' style={style1}>
           {registered ?
@@ -81,10 +92,17 @@ export default function Login(){
           <a.div className='login-username' style={style3}>
             <input
               type='text'
-              value={username}
+              value={email}
               placeholder='Email'
+              onChange={e => setEmail(e.target.value) }
+            />
+            <input
+              type='text'
+              value={username}
+              placeholder='Username'
               onChange={e => setUsername(e.target.value) }
             />
+
           </a.div>
           <a.div className='login-password' style={style4}>
             <input
@@ -123,6 +141,8 @@ export default function Login(){
           }
         </a.div>
       </div>
+      }
+      {postregister && <h1 className='postregister'>Thanks for registering! Please, check your email for a confirmation link</h1>}
     </>
   )
 }

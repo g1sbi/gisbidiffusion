@@ -92,3 +92,13 @@
     background-color: #a500c2;
     color: #101010;
 }
+
+.postregister {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 100%;
+}
